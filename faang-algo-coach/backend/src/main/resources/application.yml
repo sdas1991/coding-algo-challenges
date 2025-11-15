@@ -1,0 +1,95 @@
+spring:
+  application:
+    name: faang-algo-coach
+
+  # Database Configuration
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/faang_algo_coach?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA/Hibernate Configuration
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    show-sql: ${SHOW_SQL:false}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        use_sql_comments: true
+    open-in-view: false
+
+  # Jackson Configuration
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: true
+    deserialization:
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null
+    time-zone: UTC
+
+  # Server Configuration
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# Server Port
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: on_param
+    include-exception: false
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.faang.coach: ${LOG_LEVEL:DEBUG}
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.hibernate.SQL: ${SQL_LOG_LEVEL:INFO}
+    org.hibernate.type.descriptor.sql.BasicBinder: ${SQL_LOG_LEVEL:INFO}
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Application Specific Configuration
+app:
+  name: FAANG Algo Coach
+  version: 1.0.0
+  description: "Offline Interview Preparation Platform"
+
+  # Security Configuration
+  security:
+    csp-enabled: true
+    offline-mode: true
+
+  # Code Execution Limits
+  execution:
+    default-timeout-ms: 5000
+    max-timeout-ms: 30000
+    max-memory-mb: 256
+
+  # Wisdom Points Configuration
+  wisdom-points:
+    daily-login-bonus: 10
+    streak-bonus-threshold: 7
+    streak-bonus-wp: 50
+    teach-me-cooldown-hours: 24
+
+# Actuator Configuration (optional, for health checks)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized
