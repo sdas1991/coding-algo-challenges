@@ -4,20 +4,18 @@ FROM eclipse-temurin:21-jdk-alpine AS builder
 
 WORKDIR /build
 
-# Copy Maven wrapper and pom.xml
-COPY pom.xml .
-COPY .mvn .mvn
-COPY mvnw mvnw
+# Install Maven
+RUN apk add --no-cache maven
 
-# Download dependencies
-RUN chmod +x ./mvnw && \
-    ./mvnw dependency:resolve dependency:resolve-plugins
+# Copy pom.xml and download dependencies (cache layer)
+COPY pom.xml .
+RUN mvn dependency:resolve dependency:resolve-plugins
 
 # Copy source code
 COPY src src
 
 # Build application
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Stage 2: Runtime
 FROM eclipse-temurin:21-jre-alpine
