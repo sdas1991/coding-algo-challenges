@@ -55,7 +55,7 @@ services:
     environment:
       VITE_API_URL: http://backend-service:8080
     ports:
-      - "5173:5173"
+      - "5173:80"
     networks:
       - faang-network
     restart: unless-stopped
