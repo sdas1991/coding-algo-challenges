@@ -103,6 +103,40 @@ public class ProblemController {
         return ResponseEntity.ok(responses);
     }
 
+    @GetMapping("/module/{moduleType}")
+    public ResponseEntity<List<ProblemResponse>> getProblemsByModule(
+            @PathVariable String moduleType,
+            @RequestParam(required = false, defaultValue = "1") Long userId) {
+
+        List<Problem> problems = problemRepository.findByModuleType(moduleType.toUpperCase());
+
+        List<ProblemResponse> responses = problems.stream()
+                .map(problem -> {
+                    Optional<Mastery> masteryOpt = masteryRepository.findByUserIdAndProblemId(userId, problem.getId());
+                    return buildProblemResponse(problem, masteryOpt.orElse(null));
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(responses);
+    }
+
+    @GetMapping("/arena/{arena}")
+    public ResponseEntity<List<ProblemResponse>> getProblemsByArena(
+            @PathVariable String arena,
+            @RequestParam(required = false, defaultValue = "1") Long userId) {
+
+        List<Problem> problems = problemRepository.findByArena(arena.toUpperCase());
+
+        List<ProblemResponse> responses = problems.stream()
+                .map(problem -> {
+                    Optional<Mastery> masteryOpt = masteryRepository.findByUserIdAndProblemId(userId, problem.getId());
+                    return buildProblemResponse(problem, masteryOpt.orElse(null));
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(responses);
+    }
+
     private ProblemResponse buildProblemResponse(Problem problem, Mastery mastery) {
         List<String> tags = problem.getTags() != null ?
                 Arrays.asList(problem.getTags().split(",")) : List.of();

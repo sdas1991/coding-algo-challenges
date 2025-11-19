@@ -39,34 +39,28 @@ export default apiClient
 
 // API methods
 export const api = {
-  // User stats
-  getUserStats: () => apiClient.get('/user/stats'),
+  // User endpoints
+  getUserStatus: () => apiClient.get('/user/status'),
+  resetUser: () => apiClient.post('/user/reset'),
 
-  // Algorithm arenas
-  getArenas: () => apiClient.get('/arenas'),
-  getArenaProblems: (arenaName) => apiClient.get(`/arenas/${arenaName}/problems`),
-  getProblem: (problemId) => apiClient.get(`/problems/${problemId}`),
-  submitSolution: (problemId, data) => apiClient.post(`/problems/${problemId}/submit`, data),
-  getHint: (problemId, hintLevel) => apiClient.post(`/problems/${problemId}/hints/${hintLevel}`),
-  teachMe: (problemId) => apiClient.post(`/problems/${problemId}/teach`),
+  // Problem endpoints
+  getProblem: (problemId, userId = 1) => apiClient.get(`/problems/${problemId}?userId=${userId}`),
+  getProblemsByCategory: (category, userId = 1) => apiClient.get(`/problems/category/${category}?userId=${userId}`),
+  getProblemsByModule: (moduleType, userId = 1) => apiClient.get(`/problems/module/${moduleType}?userId=${userId}`),
+  getProblemsByArena: (arena, userId = 1) => apiClient.get(`/problems/arena/${arena}?userId=${userId}`),
+  getNextProblem: (moduleType, userId = 1) => apiClient.get(`/problems/next/${moduleType}?userId=${userId}`),
+  getSolvedProblems: (category, userId = 1) => apiClient.get(`/problems/solved/${category}?userId=${userId}`),
 
-  // SQL
-  getSqlProblems: () => apiClient.get('/sql/problems'),
-  submitSql: (problemId, query) => apiClient.post(`/sql/${problemId}/submit`, { query }),
+  // Submission endpoints
+  submitAlgo: (data) => apiClient.post('/submit/algo', data),
+  submitKnowledge: (data) => apiClient.post('/submit/knowledge', data),
+  getHint: (problemId) => apiClient.post(`/hint/${problemId}`),
+  teachMe: (problemId) => apiClient.post(`/teach/${problemId}`),
 
-  // JPA
-  getJpaProblems: () => apiClient.get('/jpa/problems'),
-  submitJpa: (problemId, code) => apiClient.post(`/jpa/${problemId}/submit`, { code }),
-
-  // System Design
-  getSystemDesignProblems: () => apiClient.get('/system-design/problems'),
-  submitSystemDesign: (problemId, design) => apiClient.post(`/system-design/${problemId}/submit`, { design }),
-
-  // MCQ
-  getMcqQuestions: () => apiClient.get('/mcq/questions'),
-  submitMcq: (questionId, answerId) => apiClient.post(`/mcq/${questionId}/submit`, { answerId }),
-
-  // Progress
-  getDailyGoals: () => apiClient.get('/progress/daily-goals'),
-  getBadges: () => apiClient.get('/progress/badges'),
+  // Convenience methods for specific module types
+  getAlgoProblems: (arena, userId = 1) => apiClient.get(`/problems/arena/${arena}?userId=${userId}`),
+  getSqlProblems: (userId = 1) => apiClient.get(`/problems/module/SQL?userId=${userId}`),
+  getJpaProblems: (userId = 1) => apiClient.get(`/problems/module/JPA?userId=${userId}`),
+  getSystemDesignProblems: (userId = 1) => apiClient.get(`/problems/module/SYS_DESIGN?userId=${userId}`),
+  getMcqProblems: (userId = 1) => apiClient.get(`/problems/module/MCQ?userId=${userId}`),
 }
