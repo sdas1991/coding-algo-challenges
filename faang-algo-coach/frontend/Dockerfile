@@ -26,15 +26,10 @@ COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 # Copy built application from builder
 COPY --from=builder /build/dist /usr/share/nginx/html
 
-# Create non-root user for security
-RUN addgroup -g 1000 nginx && \
-    chown -R nginx:nginx /usr/share/nginx/html && \
-    chown -R nginx:nginx /etc/nginx/conf.d && \
-    chown -R nginx:nginx /var/cache/nginx && \
-    chown -R nginx:nginx /var/log/nginx && \
-    chown -R nginx:nginx /etc/nginx/nginx.conf && \
+# Set permissions (nginx user/group already exists in nginx:alpine)
+RUN chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/log/nginx /etc/nginx/conf.d && \
     touch /var/run/nginx.pid && \
-    chown -R nginx:nginx /var/run/nginx.pid
+    chown nginx:nginx /var/run/nginx.pid
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
