@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "*")
 public class UserController {
 
     private final WisdomPointService wisdomPointService;

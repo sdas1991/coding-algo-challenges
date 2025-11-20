@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/problems")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "*")
 public class ProblemController {
 
     private final ProblemRepository problemRepository;
