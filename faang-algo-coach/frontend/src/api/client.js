@@ -59,8 +59,10 @@ export const api = {
 
   // Convenience methods for specific module types
   getAlgoProblems: (arena, userId = 1) => apiClient.get(`/problems/arena/${arena}?userId=${userId}`),
+  getArenaProblems: (arena, userId = 1) => apiClient.get(`/problems/arena/${arena}?userId=${userId}`),
   getSqlProblems: (userId = 1) => apiClient.get(`/problems/module/SQL?userId=${userId}`),
   getJpaProblems: (userId = 1) => apiClient.get(`/problems/module/JPA?userId=${userId}`),
   getSystemDesignProblems: (userId = 1) => apiClient.get(`/problems/module/SYS_DESIGN?userId=${userId}`),
   getMcqProblems: (userId = 1) => apiClient.get(`/problems/module/MCQ?userId=${userId}`),
+  getMcqQuestions: (userId = 1) => apiClient.get(`/problems/module/MCQ?userId=${userId}`),
 }
