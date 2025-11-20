@@ -265,11 +265,11 @@ const arenas = ref([
     solvedProblems: 0
   },
   {
-    name: 'binary-search',
-    displayName: 'Binary Search',
-    description: 'Efficient searching techniques',
+    name: 'heaps',
+    displayName: 'Heaps & Priority Queues',
+    description: 'Efficient min/max operations',
     difficulty: 'Medium',
-    totalProblems: 11,
+    totalProblems: 25,
     solvedProblems: 0
   },
   {

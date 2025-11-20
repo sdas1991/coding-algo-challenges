@@ -14,7 +14,27 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
       - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
-      - ./db/seed:/docker-entrypoint-initdb.d/seed
+      - ./db/seed/02_algo_arrays.sql:/docker-entrypoint-initdb.d/02_algo_arrays.sql
+      - ./db/seed/03_algo_strings.sql:/docker-entrypoint-initdb.d/03_algo_strings.sql
+      - ./db/seed/04_algo_linked_lists.sql:/docker-entrypoint-initdb.d/04_algo_linked_lists.sql
+      - ./db/seed/05_algo_stacks_queues.sql:/docker-entrypoint-initdb.d/05_algo_stacks_queues.sql
+      - ./db/seed/06_algo_trees.sql:/docker-entrypoint-initdb.d/06_algo_trees.sql
+      - ./db/seed/07_algo_graphs.sql:/docker-entrypoint-initdb.d/07_algo_graphs.sql
+      - ./db/seed/08_algo_dp.sql:/docker-entrypoint-initdb.d/08_algo_dp.sql
+      - ./db/seed/09_algo_greedy.sql:/docker-entrypoint-initdb.d/09_algo_greedy.sql
+      - ./db/seed/10_algo_heaps.sql:/docker-entrypoint-initdb.d/10_algo_heaps.sql
+      - ./db/seed/11_algo_backtracking.sql:/docker-entrypoint-initdb.d/11_algo_backtracking.sql
+      - ./db/seed/12_sql_practice.sql:/docker-entrypoint-initdb.d/12_sql_practice.sql
+      - ./db/seed/13_jpa_practice.sql:/docker-entrypoint-initdb.d/13_jpa_practice.sql
+      - ./db/seed/14_system_design.sql:/docker-entrypoint-initdb.d/14_system_design.sql
+      - ./db/seed/15_mcq_java_spring_kotlin.sql:/docker-entrypoint-initdb.d/15_mcq_java_spring_kotlin.sql
+      - ./db/seed/16_algo_strings_advanced.sql:/docker-entrypoint-initdb.d/16_algo_strings_advanced.sql
+      - ./db/seed/17_algo_recursion_advanced.sql:/docker-entrypoint-initdb.d/17_algo_recursion_advanced.sql
+      - ./db/seed/18_algo_graphs_advanced.sql:/docker-entrypoint-initdb.d/18_algo_graphs_advanced.sql
+      - ./db/seed/19_algo_dp_advanced.sql:/docker-entrypoint-initdb.d/19_algo_dp_advanced.sql
+      - ./db/seed/20_algo_matrix_advanced.sql:/docker-entrypoint-initdb.d/20_algo_matrix_advanced.sql
+      - ./db/seed/21_algo_trees_advanced.sql:/docker-entrypoint-initdb.d/21_algo_trees_advanced.sql
+      - ./db/seed/22_algo_mixed_patterns.sql:/docker-entrypoint-initdb.d/22_algo_mixed_patterns.sql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "faang", "-pfaangpass"]

@@ -125,7 +125,9 @@ public class ProblemController {
             @PathVariable String arena,
             @RequestParam(required = false, defaultValue = "1") Long userId) {
 
-        List<Problem> problems = problemRepository.findByArena(arena.toUpperCase());
+        // Convert hyphens to underscores and uppercase (e.g., "linked-lists" -> "LINKED_LISTS")
+        String arenaName = arena.replace("-", "_").toUpperCase();
+        List<Problem> problems = problemRepository.findByArena(arenaName);
 
         List<ProblemResponse> responses = problems.stream()
                 .map(problem -> {
