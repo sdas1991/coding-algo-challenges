@@ -41,6 +41,9 @@ export default apiClient
 export const api = {
   // User endpoints
   getUserStatus: () => apiClient.get('/user/status'),
+  getUserStats: () => apiClient.get('/user/status'),  // Alias for getUserStatus
+  getDailyGoals: () => apiClient.get('/user/daily-goals'),
+  getBadges: () => apiClient.get('/user/badges'),
   resetUser: () => apiClient.post('/user/reset'),
 
   // Problem endpoints
@@ -50,6 +53,7 @@ export const api = {
   getProblemsByArena: (arena, userId = 1) => apiClient.get(`/problems/arena/${arena}?userId=${userId}`),
   getNextProblem: (moduleType, userId = 1) => apiClient.get(`/problems/next/${moduleType}?userId=${userId}`),
   getSolvedProblems: (category, userId = 1) => apiClient.get(`/problems/solved/${category}?userId=${userId}`),
+  getArenas: () => apiClient.get('/problems/arenas'),
 
   // Submission endpoints
   submitAlgo: (data) => apiClient.post('/submit/algo', data),
