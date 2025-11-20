@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS problem (
     time_limit_ms INT DEFAULT 5000,
     memory_limit_mb INT DEFAULT 256,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_module_type (module_type),
     INDEX idx_category (category),
     INDEX idx_difficulty (difficulty),
