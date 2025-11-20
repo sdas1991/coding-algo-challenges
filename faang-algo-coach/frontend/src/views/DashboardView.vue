@@ -189,7 +189,7 @@ const arenas = ref([
     displayName: 'Strings',
     description: 'String algorithms and pattern matching',
     difficulty: 'Easy',
-    totalProblems: 12,
+    totalProblems: 27,
     solvedProblems: 0
   },
   {
@@ -213,7 +213,7 @@ const arenas = ref([
     displayName: 'Trees',
     description: 'Binary trees and traversals',
     difficulty: 'Medium',
-    totalProblems: 14,
+    totalProblems: 29,
     solvedProblems: 0
   },
   {
@@ -221,7 +221,7 @@ const arenas = ref([
     displayName: 'Graphs',
     description: 'Graph algorithms and traversals',
     difficulty: 'Hard',
-    totalProblems: 12,
+    totalProblems: 27,
     solvedProblems: 0
   },
   {
@@ -229,7 +229,23 @@ const arenas = ref([
     displayName: 'Dynamic Programming',
     description: 'Optimization and memoization',
     difficulty: 'Hard',
-    totalProblems: 18,
+    totalProblems: 33,
+    solvedProblems: 0
+  },
+  {
+    name: 'recursion',
+    displayName: 'Recursion',
+    description: 'Advanced recursive problem solving',
+    difficulty: 'Hard',
+    totalProblems: 15,
+    solvedProblems: 0
+  },
+  {
+    name: 'matrix',
+    displayName: 'Matrix',
+    description: '2D array manipulation and traversal',
+    difficulty: 'Medium',
+    totalProblems: 15,
     solvedProblems: 0
   },
   {
@@ -254,6 +270,14 @@ const arenas = ref([
     description: 'Efficient searching techniques',
     difficulty: 'Medium',
     totalProblems: 11,
+    solvedProblems: 0
+  },
+  {
+    name: 'mixed-patterns',
+    displayName: 'Mixed Patterns',
+    description: 'Complex problems requiring multiple algorithms',
+    difficulty: 'Hard',
+    totalProblems: 15,
     solvedProblems: 0
   }
 ])
